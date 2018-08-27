@@ -62,6 +62,16 @@ class _MyAppState extends State<MyApp> {
                   setState(() => _reading = reading);
                 },
               ),
+              StreamBuilder(
+                stream: Barometer.pressureStream,
+                builder: (BuildContext context, AsyncSnapshot<double> snapshot) {
+                  if (snapshot.hasData) {
+                    return Text('PRESSURE STREAM ${snapshot.data}');
+                  }
+                  return Text('NO DATA');
+                }
+
+              )
             ],
           ),
         ),
